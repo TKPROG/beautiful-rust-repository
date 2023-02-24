@@ -6,7 +6,7 @@ env:
   CARGO_TERM_COLOR: always
 
 jobs:
-  test:
+  test-app:
     name: Test App
     runs-on: ubuntu-latest
     steps:
@@ -17,7 +17,7 @@ jobs:
         run: cargo test
         working-directory: app
 
-  test:
+  test-lib:
     name: Test Lib
     runs-on: ubuntu-latest
     steps:
@@ -28,7 +28,7 @@ jobs:
         run: cargo test
         working-directory: lib
 
-  fmt:
+  fmt-app:
     name: Rustfmt App
     runs-on: ubuntu-latest
     steps:
@@ -40,7 +40,7 @@ jobs:
         run: cargo fmt --check
         working-directory: app
 
-  fmt:
+  fmt-lib:
     name: Rustfmt Lib
     runs-on: ubuntu-latest
     steps:
@@ -52,7 +52,7 @@ jobs:
         run: cargo fmt --check
         working-directory: lib
 
-  clippy:
+  clippy-app:
     name: Clippy App
     runs-on: ubuntu-latest
     steps:
@@ -65,7 +65,7 @@ jobs:
         run: cargo clippy --all-targets -- -D warnings
         working-directory: app
 
-  clippy:
+  clippy-lib:
     name: Clippy Lib
     runs-on: ubuntu-latest
     steps:
@@ -78,8 +78,8 @@ jobs:
         run: cargo clippy --all-targets -- -D warnings
         working-directory: lib
 
-  coverage:
-    name: Code coverage
+  coverage-app:
+    name: Code coverage App
     runs-on: ubuntu-latest
     container:
       image: xd009642/tarpaulin
@@ -92,8 +92,8 @@ jobs:
           cargo tarpaulin --verbose --workspace
         working-directory: app
 
-  coverage:
-    name: Code coverage
+  coverage-lib:
+    name: Code coverage Lib
     runs-on: ubuntu-latest
     container:
       image: xd009642/tarpaulin
