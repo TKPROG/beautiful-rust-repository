@@ -77,3 +77,23 @@ jobs:
       - name: Linting
         run: cargo clippy --all-targets -- -D warnings
         working-directory: lib
+        
+  security_audit-app:
+    name: Security Audit App
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - uses: taiki-e/install-action@cargo-deny
+      - name: Scan for vulnerabilities
+        run: cargo deny check advisories
+        working-directory: app
+        
+  security_audit-lib:
+    name: Security Audit Lib
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - uses: taiki-e/install-action@cargo-deny
+      - name: Scan for vulnerabilities
+        run: cargo deny check advisories
+        working-directory: lib
